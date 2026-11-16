@@ -1,0 +1,851 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivah Muhurat | vivahmuhurat.in - Auspicious Matrimonial & Marriage Bureau</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- QRCode.js for PhonePe UPI QR Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: {
+                            950: '#3B0711',
+                            900: '#5C061C',
+                            800: '#7B1427',
+                            700: '#9B1C31',
+                            100: '#FCE8EC',
+                            50: '#FDF4F6',
+                        },
+                        gold: {
+                            600: '#B8860B',
+                            500: '#D4AF37',
+                            400: '#E5C158',
+                            200: '#F5E6B8',
+                            100: '#FBF5E2',
+                        },
+                        cream: {
+                            100: '#F7F1E5',
+                            50: '#FDFBF7',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2A1619;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .mandala-pattern {
+            background-image: radial-gradient(rgba(212, 175, 55, 0.14) 1.5px, transparent 1.5px), radial-gradient(rgba(123, 20, 39, 0.08) 1.5px, #FDFBF7 1.5px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #3B0711 0%, #5C061C 52%, #4A0B17 100%);
+        }
+        .gold-shimmer {
+            background: linear-gradient(135deg, #D4AF37 0%, #F3D97E 50%, #B8860B 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 9999px;
+        }
+        /* Google Translate Widget Styling */
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0 !important; }
+        .goog-te-combo {
+            background-color: #5C061C !important;
+            color: #F5E6B8 !important;
+            border: 1px solid #D4AF37 !important;
+            padding: 4px 8px !important;
+            border-radius: 8px !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            outline: none !important;
+        }
+        .goog-logo-link, .goog-te-gadget span { display: none !important; }
+        .goog-te-gadget { color: transparent !important; font-size: 0 !important; }
+    </style>
+</head>
+<body class="antialiased selection:bg-maroon-800 selection:text-gold-200 flex flex-col min-h-screen">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+    <!-- Top Utility Bar with Google Translate Widget -->
+    <div class="bg-maroon-950 text-gold-200 text-xs py-2 border-b border-gold-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-4 flex-wrap">
+                <a href="tel:+919326014063" class="hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-gold-400"></i>
+                    <span>+91 9326014063</span>
+                </a>
+                <span class="hidden sm:inline text-gold-500/40">|</span>
+                <a href="mailto:vivahmuhurat123@gmail.com" class="hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope text-gold-400"></i>
+                    <span>vivahmuhurat123@gmail.com</span>
+                </a>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1.5 bg-maroon-900/90 border border-gold-500/30 px-2.5 py-0.5 rounded-full text-[11px] font-medium text-gold-300">
+                    <i class="fa-solid fa-globe text-gold-400"></i> vivahmuhurat.in
+                </span>
+                <!-- Google Translate Widget Container -->
+                <div id="google_translate_element" class="inline-block"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-cream-50/95 backdrop-blur-md border-b border-gold-500/25 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl hero-gradient flex items-center justify-center border-2 border-gold-400 shadow-md group-hover:scale-105 transition">
+                        <svg class="w-6 h-6 text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M12 2C9.5 4.5 9.5 7 12 9C14.5 7 14.5 4.5 12 2Z" fill="currentColor" fill-opacity="0.25"/>
+                            <path d="M7 9H17L15.5 12.5C18 14 19 16.5 18 19C17 21 14.5 22 12 22C9.5 22 7 21 6 19C5 16.5 6 14 8.5 12.5L7 9Z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-serif text-2xl sm:text-3xl font-bold text-maroon-900 tracking-tight leading-none block">Vivah Muhurat</span>
+                        <span class="text-[11px] font-semibold tracking-widest uppercase text-gold-600">vivahmuhurat.in</span>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-maroon-900">
+                    <a href="#home" class="hover:text-gold-600 transition">Home</a>
+                    <a href="#membership" onclick="handleBrowseProfilesNav(event)" class="hover:text-gold-600 transition">Browse Profile</a>
+                    <a href="#register" class="hover:text-gold-600 transition">Register Profile</a>
+                    <a href="#contact" class="hover:text-gold-600 transition">Contact Us</a>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <div id="header-member-badge" class="hidden bg-emerald-700 text-white text-xs px-3 py-1.5 rounded-full font-semibold border border-emerald-400 shadow">
+                        ✓ Premium Member
+                    </div>
+                    <button type="button" onclick="openCheckoutModal('Yearly VIP Plan', 2999, '1 Year (365 Days)')" class="px-4 py-2 rounded-full gold-shimmer text-maroon-950 text-xs font-extrabold shadow hover:brightness-105 transition cursor-pointer">
+                        Get Membership
+                    </button>
+                    <button id="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-maroon-900 hover:bg-maroon-50 border border-maroon-900/15">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-cream-50 border-t border-gold-500/20 px-4 pt-3 pb-5 space-y-2 shadow-lg">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-xl font-semibold text-maroon-900 hover:bg-maroon-50">Home</a>
+            <a href="#membership" onclick="handleBrowseProfilesNav(event); toggleMobileMenu();" class="block px-4 py-2 rounded-xl font-semibold text-maroon-900 hover:bg-maroon-50">Browse Profile</a>
+            <a href="#register" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-xl font-semibold text-maroon-900 hover:bg-maroon-50">Register Profile</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block px-4 py-2 rounded-xl font-semibold text-maroon-900 hover:bg-maroon-50">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative hero-gradient text-cream-50 overflow-hidden py-16 sm:py-24">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="motif" width="60" height="60" patternUnits="userSpaceOnUse">
+                        <circle cx="30" cy="30" r="20" fill="none" stroke="#D4AF37" stroke-width="1"/>
+                        <path d="M30 5 L35 25 L55 30 L35 35 L30 55 L25 35 L5 30 L25 25 Z" fill="none" stroke="#D4AF37" stroke-width="0.8"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#motif)"/>
+            </svg>
+        </div>
+        <div class="relative max-w-4xl mx-auto px-4 text-center space-y-6">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-maroon-950/70 border border-gold-400/40 text-gold-300 text-xs sm:text-sm font-medium">
+                <i class="fa-solid fa-sparkles text-gold-400"></i> Trusted Indian Matrimonial Bureau • vivahmuhurat.in
+            </span>
+            <h1 class="font-serif text-4xl sm:text-6xl font-bold leading-tight text-white">
+                Find Your <span class="text-gold-400 italic">Auspicious</span> Life Partner
+            </h1>
+            <p class="text-cream-100/90 text-base sm:text-lg max-w-2xl mx-auto">
+                Verified bride & groom biodatas starting at just ₹699/month. Register your profile and unlock full contacts securely.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+                <a href="#membership" onclick="handleBrowseProfilesNav(event)" class="px-8 py-3.5 rounded-xl gold-shimmer text-maroon-950 font-bold shadow-lg hover:brightness-105 transition text-center cursor-pointer">
+                    Browse Profiles (Get Membership)
+                </a>
+                <a href="#register" class="px-8 py-3.5 rounded-xl border-2 border-gold-400 text-white font-bold hover:bg-gold-400/10 transition text-center">
+                    Register Your Profile
+                </a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-gold-200 bg-black/30 p-4 rounded-xl border border-gold-500/30 max-w-3xl mx-auto mt-8">
+                <div>📞 Helpline: <strong>+91 9326014063</strong></div>
+                <div>✉️ Email: <strong>vivahmuhurat123@gmail.com</strong></div>
+                <div>🌐 Portal: <strong>vivahmuhurat.in</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-20">
+
+        <!-- Membership Plans Section -->
+        <section id="membership" class="space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-xs font-bold tracking-widest uppercase text-gold-600">Investment in Happiness</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-1">Vivah Muhurat Membership Plans</h2>
+                <p class="text-sm text-maroon-800/80 mt-2">Active membership is required to unlock full profile directories, view direct contact numbers, and publish biodatas.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Monthly Plan -->
+                <div class="bg-white rounded-3xl p-8 border border-gold-500/30 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-3.5 py-1 rounded-full bg-maroon-100 text-maroon-900 text-xs font-bold uppercase">Starter Access</span>
+                            <span class="text-xs text-maroon-800/60 font-medium">30 Days Validity</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-maroon-900">Monthly Membership</h3>
+                        <div class="my-6">
+                            <span class="font-serif text-5xl font-bold text-maroon-900">₹699</span>
+                            <span class="text-sm text-maroon-800/70"> / month</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-maroon-900/90 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-gold-600 mr-2"></i> Full Access to All Profile Directories</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-gold-600 mr-2"></i> Direct Phone & WhatsApp Access</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-gold-600 mr-2"></i> Unlimited Profile Registration</li>
+                        </ul>
+                    </div>
+                    <button type="button" onclick="openCheckoutModal('Monthly Plan', 699, '30 Days')" class="w-full py-3.5 rounded-2xl hero-gradient text-gold-300 font-bold text-sm shadow hover:opacity-95 transition cursor-pointer">
+                        Get Monthly Membership (₹699)
+                    </button>
+                </div>
+
+                <!-- Yearly Plan (Best Value) -->
+                <div class="bg-gradient-to-b from-maroon-900 to-maroon-950 text-white rounded-3xl p-8 border-2 border-gold-400 shadow-2xl flex flex-col justify-between relative">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 gold-shimmer text-maroon-950 text-xs font-extrabold uppercase px-4 py-1 rounded-full shadow">
+                        ★ Best Value — Save 64% ★
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-4 mt-2">
+                            <span class="px-3.5 py-1 rounded-full bg-gold-400/20 text-gold-300 text-xs font-bold uppercase border border-gold-400/40">Royal Pass</span>
+                            <span class="text-xs text-gold-300 font-medium">365 Days Validity</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white">Yearly VIP Membership</h3>
+                        <div class="my-6 flex items-baseline gap-3">
+                            <span class="font-serif text-5xl font-bold text-gold-400">₹2,999</span>
+                            <span class="text-sm text-cream-100/80"> / year</span>
+                            <span class="text-xs line-through text-cream-100/50">₹8,388</span>
+                        </div>
+                        <ul class="space-y-3 text-sm text-cream-100/95 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-gold-400 mr-2"></i> 12 Months Unlimited Full Access</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-gold-400 mr-2"></i> Priority Matchmaking Assistance</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-gold-400 mr-2"></i> Highlighted Profile Badge in Directory</li>
+                        </ul>
+                    </div>
+                    <button type="button" onclick="openCheckoutModal('Yearly VIP Plan', 2999, '1 Year (365 Days)')" class="w-full py-3.5 rounded-2xl gold-shimmer text-maroon-950 font-extrabold text-sm shadow hover:brightness-105 transition cursor-pointer">
+                        Get Yearly VIP Membership (₹2,999)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Directory Section (Starts Completely Empty) -->
+        <section id="profiles" class="space-y-6 mandala-pattern py-8 px-4 rounded-3xl border border-gold-500/20">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-gold-500/20 pb-4">
+                <div>
+                    <span class="text-xs font-bold tracking-widest uppercase text-gold-600">Match Directory</span>
+                    <h2 class="font-serif text-3xl font-bold text-maroon-900">Verified Bride & Groom Profiles</h2>
+                    <p class="text-sm text-maroon-800/80">Browse member biodatas. Non-members see locked contact info.</p>
+                </div>
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <input type="text" id="searchInput" oninput="renderProfilesDirectory()" placeholder="Search city, religion, profession..." class="w-full md:w-72 px-4 py-2.5 rounded-xl border border-maroon-900/20 bg-white text-gray-900 text-sm focus:outline-none focus:border-maroon-800 shadow-sm">
+                    <button type="button" onclick="openCheckoutModal('Yearly VIP Plan', 2999, '1 Year (365 Days)')" id="directoryStatusBtn" class="px-4 py-2.5 rounded-xl hero-gradient text-gold-300 font-bold text-xs whitespace-nowrap shadow cursor-pointer">
+                        🔒 Unlock Profiles
+                    </button>
+                </div>
+            </div>
+
+            <div id="profilesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- Register Profile Section (Strict Payment-First Flow, No Photo Upload, Spacious max-w-4xl) -->
+        <section id="register" class="bg-white rounded-3xl p-8 sm:p-14 border border-gold-500/30 shadow-2xl max-w-4xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-bold tracking-widest uppercase text-gold-600">Join Vivah Muhurat</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-maroon-900 mt-1">Register Your Biodata</h2>
+                <p class="text-sm sm:text-base text-maroon-800/80 mt-3">
+                    Fill in your comprehensive profile details below. When you click <strong>Proceed to Membership / Register</strong>, your profile details will be held securely and the payment & activation checkout modal will open. Your profile will be published live immediately after activation code verification!
+                </p>
+            </div>
+
+            <form id="registrationForm" onsubmit="handleRegistrationSubmit(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Full Name *</label>
+                    <input type="text" id="regName" required placeholder="e.g., Aarav Deshmukh" class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Gender *</label>
+                    <select id="regGender" required class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                        <option value="Male">Male (Groom)</option>
+                        <option value="Female">Female (Bride)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Date of Birth *</label>
+                    <input type="date" id="regDob" required class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Religion *</label>
+                    <input type="text" id="regReligion" required placeholder="e.g., Hindu" class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Caste *</label>
+                    <input type="text" id="regCaste" required placeholder="e.g., Maratha / Brahmin" class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Education *</label>
+                    <input type="text" id="regEducation" required placeholder="e.g., B.Tech / MBA / MBBS" class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Occupation *</label>
+                    <input type="text" id="regOccupation" required placeholder="e.g., Software Engineer / Doctor" class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Annual Income *</label>
+                    <input type="text" id="regIncome" required placeholder="e.g., ₹12 LPA" class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">City *</label>
+                    <input type="text" id="regCity" required placeholder="e.g., Pune" class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">State *</label>
+                    <input type="text" id="regState" required placeholder="e.g., Maharashtra" class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Contact Number *</label>
+                    <input type="tel" id="regPhone" required placeholder="e.g., +91 98765 43210" class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Email Address *</label>
+                    <input type="email" id="regEmail" required placeholder="e.g., aarav@gmail.com" class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="block text-xs font-bold text-maroon-900 uppercase tracking-wider mb-1.5">Partner Expectations / Bio *</label>
+                    <textarea id="regExpectations" rows="4" required placeholder="Describe family values, education expectations, and qualities you are looking for..." class="w-full rounded-xl border border-maroon-900/20 bg-white text-gray-900 px-4 py-3.5 text-sm focus:outline-none focus:border-maroon-800"></textarea>
+                </div>
+                <div class="sm:col-span-2 text-center pt-4">
+                    <button type="submit" class="px-12 py-4 rounded-2xl hero-gradient text-gold-300 font-extrabold text-base sm:text-lg shadow-2xl hover:opacity-95 transition inline-flex items-center gap-3 cursor-pointer">
+                        <i class="fa-solid fa-lock text-gold-400"></i>
+                        <span>Proceed to Membership / Register Profile</span>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-cream-100/70 rounded-3xl p-8 sm:p-12 border border-gold-500/20">
+            <div class="max-w-3xl mx-auto text-center space-y-4">
+                <span class="text-xs font-bold tracking-widest uppercase text-gold-600">Get in Touch</span>
+                <h3 class="font-serif text-3xl font-bold text-maroon-900">Vivah Muhurat Marriage Bureau</h3>
+                <p class="text-sm text-maroon-800/80">Have questions about memberships or activation codes? Contact our bureau coordinator.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+                    <div class="bg-white p-6 rounded-2xl border border-gold-500/20 shadow-sm">
+                        <i class="fa-solid fa-phone-volume text-2xl text-maroon-900 mb-2"></i>
+                        <h4 class="font-bold text-sm text-maroon-900">Helpline Phone</h4>
+                        <a href="tel:9326014063" class="text-xs text-gold-600 font-bold hover:underline mt-1 block">+91 9326014063</a>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gold-500/20 shadow-sm">
+                        <i class="fa-solid fa-envelope-open-text text-2xl text-maroon-900 mb-2"></i>
+                        <h4 class="font-bold text-sm text-maroon-900">Official Email</h4>
+                        <a href="mailto:vivahmuhurat123@gmail.com" class="text-xs text-gold-600 font-bold hover:underline mt-1 block break-all">vivahmuhurat123@gmail.com</a>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gold-500/20 shadow-sm">
+                        <i class="fa-solid fa-globe text-2xl text-maroon-900 mb-2"></i>
+                        <h4 class="font-bold text-sm text-maroon-900">Official Portal</h4>
+                        <span class="text-xs text-gold-600 font-bold mt-1 block">vivahmuhurat.in</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-maroon-950 text-cream-100/80 border-t border-gold-500/25 py-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left">
+                <span class="font-serif text-2xl font-bold text-white">Vivah Muhurat</span>
+                <span class="ml-2 text-xs font-semibold text-gold-400">vivahmuhurat.in</span>
+                <p class="text-xs text-cream-100/60 mt-1">Auspicious Indian Matrimonial & Marriage Bureau Services</p>
+            </div>
+            <div class="flex items-center gap-4 text-xs flex-wrap justify-center">
+                <a href="tel:9326014063" class="hover:text-gold-400"><i class="fa-solid fa-phone mr-1 text-gold-400"></i> 9326014063</a>
+                <a href="mailto:vivahmuhurat123@gmail.com" class="hover:text-gold-400"><i class="fa-solid fa-envelope mr-1 text-gold-400"></i> vivahmuhurat123@gmail.com</a>
+                <button type="button" onclick="openAdminModal()" class="px-3.5 py-1.5 rounded-full bg-maroon-900 hover:bg-maroon-800 text-gold-300 border border-gold-400/40 font-semibold transition cursor-pointer">
+                    <i class="fa-solid fa-user-shield mr-1"></i> Admin Panel (PIN: 1234)
+                </button>
+            </div>
+            <p class="text-xs text-cream-100/50 text-center md:text-right">
+                &copy; 2026 Vivah Muhurat (vivahmuhurat.in). All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- SECURE CHECKOUT PAYMENT MODAL -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-maroon-950/80 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] overflow-y-auto custom-scrollbar border-2 border-gold-400 shadow-2xl">
+            <div class="hero-gradient p-6 text-white flex items-center justify-between">
+                <div>
+                    <span class="text-[11px] uppercase tracking-widest text-gold-300 font-bold">vivahmuhurat.in Secure Checkout</span>
+                    <h3 id="checkoutPlanTitle" class="font-serif text-2xl font-bold">Yearly VIP Plan</h3>
+                </div>
+                <button type="button" onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-5">
+                <div class="bg-cream-50 rounded-2xl p-4 border border-gold-500/30 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-maroon-800/75">Selected Plan</p>
+                        <p id="checkoutPlanDuration" class="font-bold text-maroon-950 text-sm">1 Year (365 Days) Full Access</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-maroon-800/70 block">Total Payable</span>
+                        <span id="checkoutAmount" class="font-serif text-3xl font-bold text-maroon-900">₹2,999</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-amber-50 border border-amber-300 rounded-2xl p-4 text-xs text-maroon-900 space-y-1.5">
+                        <strong class="block font-bold text-maroon-950 uppercase tracking-wide text-amber-900 mb-1">
+                            <i class="fa-solid fa-circle-info mr-1 text-gold-600"></i> Payment & Activation Instructions:
+                        </strong>
+                        <p>Scan PhonePe QR code below (Merchant: <strong>SANGITA MUKESH JAIN</strong>, UPI ID: <code>Q841643451@ybl</code>) or pay directly on phone number: <strong class="text-maroon-950 text-sm underline">9326014063</strong>. the code will be sent on messages.</p>
+                    </div>
+
+                    <!-- PhonePe QR Card -->
+                    <div class="flex flex-col items-center p-5 rounded-2xl bg-[#0D0D0D] text-white border-2 border-purple-500/40 shadow-lg">
+                        <div class="flex items-center gap-2.5 mb-2">
+                            <div class="w-8 h-8 rounded-full bg-[#5F259F] flex items-center justify-center font-bold text-base text-white shadow">पे</div>
+                            <span class="font-bold text-lg tracking-tight text-white">PhonePe</span>
+                        </div>
+                        <span class="text-xs font-extrabold tracking-widest uppercase text-[#A875E8]">ACCEPTED HERE</span>
+                        <p class="text-[11px] text-gray-300 mt-0.5 mb-3">Scan QR or Pay on Mobile: <strong class="text-gold-400">9326014063</strong></p>
+
+                        <div class="w-52 h-52 bg-white p-2.5 rounded-2xl shadow-md relative flex items-center justify-center overflow-hidden">
+                            <div id="qrcode" class="w-full h-full flex items-center justify-center"></div>
+                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <div class="w-10 h-10 rounded-full bg-black border-2 border-white text-white font-bold text-base flex items-center justify-center shadow-md">पे</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3.5 text-center w-full">
+                            <span class="text-[10px] uppercase tracking-widest text-gray-400 block">Merchant Name</span>
+                            <p class="font-bold text-sm sm:text-base tracking-wide text-white mt-0.5">SANGITA MUKESH JAIN</p>
+                            <div class="mt-1.5 inline-flex items-center gap-2 bg-white/10 border border-white/15 px-3 py-1 rounded-full">
+                                <span class="text-[11px] font-mono text-purple-200 select-all">Q841643451@ybl</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-cream-50 p-4 rounded-2xl border border-gold-500/30 space-y-2">
+                        <label for="activationCodeInput" class="block text-xs font-bold text-maroon-900 uppercase tracking-wider">
+                            Enter Activation Code (e.g. ABCDEFGH)
+                        </label>
+                        <input type="text" id="activationCodeInput" placeholder="ABCDEFGH" class="w-full rounded-xl border border-maroon-900/20 bg-white px-4 py-3 text-sm font-mono text-maroon-950 focus:outline-none focus:border-maroon-800">
+                    </div>
+                </div>
+
+                <button type="button" onclick="verifyActivationCode()" class="w-full py-3.5 px-6 rounded-2xl gold-shimmer text-maroon-950 font-extrabold text-sm sm:text-base shadow-lg hover:brightness-105 transition flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-key"></i>
+                    <span>Verify Activation Code & Unlock Access</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-maroon-950/80 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 border-2 border-gold-400 shadow-2xl relative">
+            <button type="button" onclick="closeAdminModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 text-gray-700 flex items-center justify-center font-bold cursor-pointer">✕</button>
+            <h3 class="font-serif text-2xl font-bold text-maroon-900 mb-4">Bureau Admin Panel</h3>
+            
+            <div id="adminLoginBox" class="space-y-4">
+                <p class="text-xs text-gray-600">Enter Admin PIN (Default: <strong>1234</strong>)</p>
+                <input type="password" id="adminPin" placeholder="Enter PIN (1234)" class="w-full px-4 py-2.5 rounded-xl border text-sm text-gray-900 bg-white">
+                <button type="button" onclick="checkAdminPin()" class="w-full py-3 rounded-xl hero-gradient text-gold-300 font-bold text-sm cursor-pointer">Login to Admin</button>
+            </div>
+
+            <div id="adminDashboard" class="hidden space-y-4">
+                <div class="flex items-center justify-between bg-emerald-50 border border-emerald-300 p-3 rounded-xl text-xs text-emerald-900">
+                    <span>✓ Logged in as Bureau Admin</span>
+                    <button type="button" onclick="clearAllData()" class="bg-red-600 text-white px-3 py-1 rounded-lg font-bold cursor-pointer">Clear All Data</button>
+                </div>
+                <h4 class="font-bold text-sm text-maroon-900 mt-2">Submitted Profiles (<span id="adminProfileCount">0</span>)</h4>
+                <div id="adminProfilesList" class="space-y-3 max-h-96 overflow-y-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,mr,gu,bn,ta,te,kn,ml,pa,ur,es,fr,de,zh-CN,ar,ja',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        let isMember = localStorage.getItem('vivah_is_member') === 'true';
+        let currentPlan = { name: 'Yearly VIP Plan', price: 2999, duration: '1 Year (365 Days)' };
+        let pendingProfileData = null;
+        const VALID_ACTIVATION_CODE = 'Vivahmuhurat12111980';
+
+        function getStoredProfiles() {
+            const stored = localStorage.getItem('vivah_custom_profiles');
+            if (stored) {
+                try { return JSON.parse(stored); } catch(e) { return []; }
+            }
+            return []; // Zero pre-populated sample profiles initially
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updateMembershipUI();
+            renderProfilesDirectory();
+        });
+
+        window.toggleMobileMenu = function() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+        };
+
+        window.handleBrowseProfilesNav = function(e) {
+            if (e) e.preventDefault();
+            const membershipEl = document.getElementById('membership');
+            if (membershipEl) membershipEl.scrollIntoView({ behavior: 'smooth' });
+            if (!isMember) {
+                showToast('Please choose a membership plan to browse and unlock contacts.', 'error');
+            }
+        };
+
+        function updateMembershipUI() {
+            const badge = document.getElementById('header-member-badge');
+            const lockBtn = document.getElementById('directoryStatusBtn');
+            if (isMember) {
+                if (badge) badge.classList.remove('hidden');
+                if (lockBtn) {
+                    lockBtn.innerHTML = '✓ Membership Active';
+                    lockBtn.className = 'px-4 py-2.5 rounded-xl bg-emerald-700 text-white font-bold text-xs whitespace-nowrap shadow cursor-pointer';
+                }
+            } else {
+                if (badge) badge.classList.add('hidden');
+                if (lockBtn) {
+                    lockBtn.innerHTML = '🔒 Unlock Profiles';
+                    lockBtn.className = 'px-4 py-2.5 rounded-xl hero-gradient text-gold-300 font-bold text-xs whitespace-nowrap shadow cursor-pointer';
+                }
+            }
+            renderProfilesDirectory();
+        }
+
+        window.openCheckoutModal = function(planName, amount, duration) {
+            currentPlan = { name: planName, price: amount, duration: duration };
+            const titleEl = document.getElementById('checkoutPlanTitle');
+            const durationEl = document.getElementById('checkoutPlanDuration');
+            const amountEl = document.getElementById('checkoutAmount');
+            
+            if (titleEl) titleEl.textContent = planName;
+            if (durationEl) durationEl.textContent = duration + ' Full Access';
+            if (amountEl) amountEl.textContent = '₹' + amount;
+            
+            const modal = document.getElementById('checkoutModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                modal.style.display = 'flex';
+            }
+
+            setTimeout(() => {
+                const qrContainer = document.getElementById('qrcode');
+                if (qrContainer) {
+                    qrContainer.innerHTML = '';
+                    try {
+                        new QRCode(qrContainer, {
+                            text: `upi://pay?pa=Q841643451@ybl&pn=SangitaMukeshJain&am=${amount}&cu=INR&tn=VivahMuhuratMembership`,
+                            width: 170,
+                            height: 170,
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                    } catch(e) {}
+                }
+            }, 100);
+        };
+
+        window.closeCheckoutModal = function() {
+            const modal = document.getElementById('checkoutModal');
+            if (modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+            }
+        };
+
+        window.verifyActivationCode = function() {
+            const inputCode = document.getElementById('activationCodeInput').value.trim();
+            if (inputCode !== VALID_ACTIVATION_CODE) {
+                showToast('Invalid activation code. the code will be sent on messages.', 'error');
+                return;
+            }
+
+            isMember = true;
+            localStorage.setItem('vivah_is_member', 'true');
+            updateMembershipUI();
+            closeCheckoutModal();
+            showToast('Membership activated successfully!', 'success');
+
+            if (pendingProfileData) {
+                pendingProfileData.approved = true;
+                const profiles = getStoredProfiles();
+                profiles.unshift(pendingProfileData);
+                localStorage.setItem('vivah_custom_profiles', JSON.stringify(profiles));
+                pendingProfileData = null;
+                showToast('Your profile has been published live in the directory!', 'success');
+                renderProfilesDirectory();
+                document.getElementById('profiles').scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+
+        window.handleRegistrationSubmit = function(e) {
+            e.preventDefault();
+
+            const genderVal = document.getElementById('regGender').value;
+            const defaultAvatar = genderVal === 'Male'
+                ? 'https://placehold.co/300x300/5C061C/F5E6B8?text=Groom'
+                : 'https://placehold.co/300x300/5C061C/F5E6B8?text=Bride';
+
+            const newProfile = {
+                id: 'VM-' + Math.floor(100 + Math.random() * 900),
+                name: document.getElementById('regName').value.trim(),
+                gender: genderVal,
+                dob: document.getElementById('regDob').value.trim(),
+                religion: document.getElementById('regReligion').value.trim(),
+                caste: document.getElementById('regCaste').value.trim(),
+                education: document.getElementById('regEducation').value.trim(),
+                occupation: document.getElementById('regOccupation').value.trim(),
+                income: document.getElementById('regIncome').value.trim(),
+                city: document.getElementById('regCity').value.trim(),
+                state: document.getElementById('regState').value.trim(),
+                phone: document.getElementById('regPhone').value.trim(),
+                email: document.getElementById('regEmail').value.trim(),
+                expectations: document.getElementById('regExpectations').value.trim(),
+                photo: defaultAvatar,
+                approved: false
+            };
+
+            // Hold data temporarily, do NOT save/publish until activation code is verified
+            pendingProfileData = newProfile;
+            document.getElementById('registrationForm').reset();
+
+            showToast('Profile details recorded. Please complete payment and activation to publish!', 'success');
+            openCheckoutModal('Yearly VIP Plan', 2999, '1 Year (365 Days)');
+        };
+
+        window.renderProfilesDirectory = function() {
+            const grid = document.getElementById('profilesGrid');
+            if (!grid) return;
+
+            const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase() : '';
+            const profiles = getStoredProfiles();
+            const filtered = profiles.filter(p => {
+                if (!p.approved && !isMember) return false;
+                const matchText = (p.name + ' ' + p.city + ' ' + p.religion + ' ' + p.occupation + ' ' + p.caste).toLowerCase();
+                return matchText.includes(searchQuery);
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 bg-white rounded-3xl border border-gold-500/20 shadow-sm p-8">
+                        <div class="w-16 h-16 bg-maroon-50 text-maroon-900 rounded-2xl mx-auto flex items-center justify-center text-2xl mb-3">
+                            <i class="fa-solid fa-users-rectangle"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-maroon-900">No Profiles Found in Directory</h3>
+                        <p class="text-xs text-gray-600 mt-1 max-w-md mx-auto">
+                            The profile directory starts completely empty. Register your biodata and complete membership activation to be featured!
+                        </p>
+                        <a href="#register" class="mt-5 inline-block px-6 py-2.5 rounded-xl hero-gradient text-gold-300 font-bold text-xs shadow">
+                            Register Your Profile Now
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="bg-white rounded-3xl border border-gold-500/25 shadow-lg overflow-hidden flex flex-col justify-between transition hover:shadow-xl">
+                    <div class="relative h-60 bg-cream-100 overflow-hidden">
+                        <img src="${p.photo}" alt="${p.name}" class="w-full h-full object-cover">
+                        <span class="absolute top-3 right-3 bg-maroon-950/80 backdrop-blur-md text-gold-300 text-[11px] font-bold px-3 py-1 rounded-full border border-gold-400/40">
+                            ${p.id}
+                        </span>
+                        <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md text-maroon-900 text-xs font-bold px-3 py-1 rounded-full shadow">
+                            ${p.gender} • ${p.religion} (${p.caste})
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-maroon-900">${p.name}</h3>
+                            <p class="text-xs font-semibold text-gold-600 mb-2"><i class="fa-solid fa-location-dot mr-1"></i> ${p.city}, ${p.state}</p>
+                            <p class="text-xs text-maroon-800/90 font-medium"><i class="fa-solid fa-graduation-cap mr-1 text-gold-600"></i> ${p.education} | ${p.occupation}</p>
+                            <p class="text-xs text-maroon-800/90 font-medium mb-3"><i class="fa-solid fa-indian-rupee-sign mr-1 text-gold-600"></i> Income: ${p.income}</p>
+                            <p class="text-xs text-gray-600 line-clamp-2 bg-cream-50 p-3 rounded-xl border border-gold-500/10 italic">"${p.expectations}"</p>
+                        </div>
+                        <div class="pt-3 border-t border-gold-500/15">
+                            ${isMember ? `
+                                <div class="space-y-1.5 text-xs bg-emerald-50 border border-emerald-300 p-3 rounded-xl text-emerald-950 font-medium">
+                                    <p>📞 Phone: <strong>${p.phone}</strong></p>
+                                    <p>✉️ Email: <strong>${p.email}</strong></p>
+                                </div>
+                            ` : `
+                                <button type="button" onclick="openCheckoutModal('Yearly VIP Plan', 2999, '1 Year (365 Days)')" class="w-full py-2.5 rounded-xl bg-maroon-900 text-gold-300 font-bold text-xs shadow hover:bg-maroon-800 transition cursor-pointer">
+                                    🔒 Unlock Full Contact Details
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        window.openAdminModal = function() {
+            document.getElementById('adminPin').value = '';
+            document.getElementById('adminLoginBox').classList.remove('hidden');
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('adminModal').classList.remove('hidden');
+            document.getElementById('adminModal').classList.add('flex');
+        };
+
+        window.closeAdminModal = function() {
+            document.getElementById('adminModal').classList.remove('flex');
+            document.getElementById('adminModal').classList.add('hidden');
+        };
+
+        window.checkAdminPin = function() {
+            const pin = document.getElementById('adminPin').value.trim();
+            if (pin === '1234') {
+                document.getElementById('adminLoginBox').classList.add('hidden');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                loadAdminProfiles();
+                showToast('Admin login successful.', 'success');
+            } else {
+                showToast('Incorrect PIN. Use 1234.', 'error');
+            }
+        };
+
+        window.loadAdminProfiles = function() {
+            const profiles = getStoredProfiles();
+            const list = document.getElementById('adminProfilesList');
+            document.getElementById('adminProfileCount').textContent = profiles.length;
+
+            if (profiles.length === 0) {
+                list.innerHTML = `<p class="text-xs text-gray-500 italic p-4 text-center">No profiles registered yet.</p>`;
+                return;
+            }
+
+            list.innerHTML = profiles.map((p, index) => `
+                <div class="bg-cream-50 p-4 rounded-xl border border-gold-500/20 flex items-center justify-between gap-4 text-xs">
+                    <div>
+                        <strong class="text-maroon-950 font-bold text-sm block">${p.name} (${p.id})</strong>
+                        <span class="text-gray-600">${p.city}, ${p.state} • ${p.phone} • ${p.email}</span>
+                        <span class="block mt-1 badge text-[10px] ${p.approved ? 'text-emerald-700 font-bold' : 'text-amber-700 font-bold'}">
+                            Status: ${p.approved ? 'Active / Published' : 'Pending Membership'}
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        ${!p.approved ? `<button type="button" onclick="approveProfile(${index})" class="px-3 py-1.5 bg-emerald-700 text-white rounded-lg font-bold">Approve</button>` : ''}
+                        <button type="button" onclick="deleteProfile(${index})" class="px-3 py-1.5 bg-red-600 text-white rounded-lg font-bold">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        window.approveProfile = function(index) {
+            const profiles = getStoredProfiles();
+            profiles[index].approved = true;
+            localStorage.setItem('vivah_custom_profiles', JSON.stringify(profiles));
+            loadAdminProfiles();
+            renderProfilesDirectory();
+            showToast('Profile approved and published!', 'success');
+        };
+
+        window.deleteProfile = function(index) {
+            const profiles = getStoredProfiles();
+            profiles.splice(index, 1);
+            localStorage.setItem('vivah_custom_profiles', JSON.stringify(profiles));
+            loadAdminProfiles();
+            renderProfilesDirectory();
+            showToast('Profile deleted.', 'success');
+        };
+
+        window.clearAllData = function() {
+            if (confirm('Are you sure you want to clear all data and reset membership?')) {
+                localStorage.removeItem('vivah_custom_profiles');
+                localStorage.removeItem('vivah_is_member');
+                isMember = false;
+                updateMembershipUI();
+                loadAdminProfiles();
+                showToast('All data cleared.', 'success');
+            }
+        };
+
+        window.showToast = function(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = `p-4 rounded-2xl shadow-xl border text-sm font-semibold flex items-center gap-3 transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto ${
+                type === 'success' ? 'bg-emerald-900 text-white border-emerald-700' : 'bg-red-900 text-white border-red-700'
+            }`;
+            toast.innerHTML = `
+                <i class="fa-solid ${type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-triangle-exclamation text-red-400'} text-lg"></i>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        };
+    </script>
+</body>
+</html>
+```
